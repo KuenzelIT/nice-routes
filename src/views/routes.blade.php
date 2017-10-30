@@ -37,36 +37,43 @@
 
     <h1 class="display-4">Routes ({{ count($routes) }})</h1>
 
-    <table class="table table-sm table-hover" style="visibility: hidden;">
+    <table class="table table-sm table-hover table-bordered">
         <thead>
             <tr>
                 <th>Methods</th>
                 <th class="domain">Domain</td>
                 <th>Path</td>
+                <th>Middleware</th>
                 <th>Name</th>
                 <th>Action</th>
-                <th>Middleware</th>
             </tr>
         </thead>
         <tbody>
-            <?php $methodColours = ['GET' => 'success', 'HEAD' => 'default', 'POST' => 'primary', 'PUT' => 'warning', 'PATCH' => 'info', 'DELETE' => 'danger']; ?>
             @foreach ($routes as $route)
                 <tr>
                     <td>
-                        @foreach (array_diff($route->methods(), config('pretty-routes.hide_methods')) as $method)
-                            <span class="tag tag-{{ array_get($methodColours, $method) }}">{{ $method }}</span>
+                        @foreach (array_diff($route->methods(), config('nice-routes.hide_methods')) as $method)
+                            <span class="tag tag-{{ array_get($methodColors, $method) }}">{{ $method }}</span>
                         @endforeach
                     </td>
-                    <td class="domain{{ strlen($route->domain()) == 0 ? ' domain-empty' : '' }}">{{ $route->domain() }}</td>
-                    <td>{!! preg_replace('#({[^}]+})#', '<span class="text-warning">$1</span>', $route->uri()) !!}</td>
-                    <td>{{ $route->getName() }}</td>
-                    <td>{!! preg_replace('#(@.*)$#', '<span class="text-warning">$1</span>', $route->getActionName()) !!}</td>
+                    <td class="domain{{ strlen($route->domain()) == 0 ? ' domain-empty' : '' }}">
+                        {{ $route->domain() }}
+                    </td>
                     <td>
-                      @if (is_callable([$route, 'controllerMiddleware']))
-                        {{ implode(', ', array_map($middlewareClosure, array_merge($route->middleware(), $route->controllerMiddleware()))) }}
-                      @else
-                        {{ implode(', ', $route->middleware()) }}
-                      @endif
+                        {!! preg_replace('#({[^}]+})#', '<span class="text-warning">$1</span>', $route->uri()) !!}
+                    </td>
+                    <td>
+                        @if (is_callable([$route, 'controllerMiddleware']))
+                            {!! implode(config('nice-routes.middlewareSeperator'), array_map($middlewareClosure, array_merge($route->middleware(), $route->controllerMiddleware()))) !!}
+                        @else
+                            {!! implode(config('nice-routes.middlewareSeperator'), $route->middleware()) !!}
+                        @endif
+                    </td>
+                    <td>
+                        {{ $route->getName() }}
+                    </td>
+                    <td>
+                        {!! preg_replace('#(@.*)$#', '<span class="text-warning">$1</span>', $route->getActionName()) !!}
                     </td>
                 </tr>
             @endforeach

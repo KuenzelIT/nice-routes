@@ -14,4 +14,8 @@ return [
         'HEAD',
     ],
 
+    /**
+     * Is being used to implode all middlewares. Instead of a line break you may use ', ' or anything else.
+     */
+    'middlewareSeperator' => '<br>'
 ];

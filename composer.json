@@ -1,26 +1,26 @@
 {
-    "name": "garygreen/pretty-routes",
-    "description": "Pretty routes for Laravel 5.",
+    "name": "kuenzelit/nice-routes",
+    "description": "Nice routes for Laravel 5.",
     "require": {
         "laravel/framework": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": "Gary Green",
-            "email": "holegary@gmail.com"
+            "name": "Denis Künzel",
+            "email": "coding@kuenzelit.de"
         }
     ],
     "autoload": {
         "psr-4": {
-            "PrettyRoutes\\": "src"
+            "KuenzelIT\\NiceRoutes\\": "src"
         }
     },
     "minimum-stability": "dev",
     "extra": {
         "laravel": {
             "providers": [
-                "PrettyRoutes\\ServiceProvider"
+                "KuenzelIT\\NiceRoutes\\NiceRoutesServiceProvider"
             ]
         }
     }
