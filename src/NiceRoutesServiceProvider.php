@@ -23,6 +23,7 @@ class NiceRoutesServiceProvider extends ServiceProvider
         ]);
 
         Route::get(config('nice-routes.url'), [
+            'middleware' => config('nice-routes.middleware'),
             'as' => 'nice-routes',
             'uses' => 'KuenzelIT\NiceRoutes\Controllers\NiceRoutesController@routes'
         ]);

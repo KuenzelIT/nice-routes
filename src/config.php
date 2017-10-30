@@ -8,6 +8,11 @@ return [
     'url' => 'routes',
 
     /**
+     * Define a middleware for the package. (e.g. 'admin')
+     */
+    'middleware' => [],
+
+    /**
      * The methods to hide.
      */
     'hide_methods' => [
