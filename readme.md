@@ -1,17 +1,19 @@
-Pretty Routes for Laravel 5
+Nice Routes for Laravel 5
 ====
 
-Visualise your routes in pretty format.
+Get a nice overview of your Laravel routes. 
+
+Based on [pretty-routes](https://github.com/garygreen/pretty-routes) made by @garygreen.
 
 ![Pretty Routes](https://raw.githubusercontent.com/garygreen/pretty-routes/master/screenshot.png)
 
 # Installation
 
 ```bash
-composer require garygreen/pretty-routes
+composer require kuenzelit/nice-routes
 ```
 
-Add to your `config/app.php` providers array:
+Add to your `config/app.php` providers array (not neccessary > Laravel 5.5):
 
 ```php
 PrettyRoutes\ServiceProvider::class,
@@ -20,5 +22,5 @@ PrettyRoutes\ServiceProvider::class,
 By default the package exposes a `/routes` url. If you wish to configure this, publish the config.
 
 ```bash
-php artisan vendor:publish --provider="PrettyRoutes\ServiceProvider"
+php artisan vendor:publish --provider="KuenzelIT\NiceRoutes\NiceRoutesServiceProvider"
 ```
